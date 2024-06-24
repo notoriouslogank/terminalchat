@@ -1,10 +1,11 @@
 import random
 import socket
+import sys
 from datetime import datetime
 from threading import Thread
 
 from colorama import Fore, init
-import sys
+from rich import print as pprint
 
 init()
 colors = [
@@ -26,13 +27,12 @@ colors = [
 ]
 
 client_color = random.choice(colors)
-
-SERVER_HOST = sys.argv[1]
+SERVER_HOST = input("IP to connect to: ")
 SERVER_PORT = 5002
 separator_token = "<SEP>"
 
 s = socket.socket()
-print(f"[*] Connecting to {SERVER_HOST}:{SERVER_PORT}...")
+pprint(f"[*] Connecting to {SERVER_HOST}:{SERVER_PORT}...")
 s.connect((SERVER_HOST, SERVER_PORT))
 print("[+] Connected.")
 name = input("Username: ")
@@ -49,11 +49,13 @@ t.daemon = True
 t.start()
 
 while True:
-    to_send = input()
+    to_send = input(f"\n >> ")
     if to_send.lower() == "q":
         break
     date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    to_send = f"{client_color}[{date_now}] {name}{separator_token}{to_send}{Fore.RESET}"
+    to_send = (
+        f"[{date_now}] {client_color}{name}{Fore.RESET}{separator_token}{to_send}\n"
+    )
     s.send(to_send.encode())
 
 s.close()
