@@ -1,10 +1,10 @@
 import random
 import socket
+import sys
 from datetime import datetime
 from threading import Thread
-
+from rich import print
 from colorama import Fore, init
-import sys
 
 init()
 colors = [
@@ -26,8 +26,7 @@ colors = [
 ]
 
 client_color = random.choice(colors)
-
-SERVER_HOST = sys.argv[1]
+SERVER_HOST = input("IP to connect to: ")
 SERVER_PORT = 5002
 separator_token = "<SEP>"
 
