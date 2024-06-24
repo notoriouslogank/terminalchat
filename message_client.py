@@ -49,7 +49,7 @@ t.daemon = True
 t.start()
 
 while True:
-    to_send = input(f"\n >> ")
+    to_send = input(f"\n")
     if to_send.lower() == "q":
         break
     date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
