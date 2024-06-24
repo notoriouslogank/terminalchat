@@ -2,6 +2,7 @@ import socket
 from threading import Thread
 
 from requests import get
+from rich import print
 
 ip = get("https://api.ipify.org").content.decode("utf8")
 SERVER_HOST = "0.0.0.0"
