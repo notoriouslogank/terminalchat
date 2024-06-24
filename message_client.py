@@ -53,7 +53,9 @@ while True:
     if to_send.lower() == "q":
         break
     date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    to_send = f"[{date_now}] {client_color}{name}{Fore.RESET}{separator_token}{to_send}"
+    to_send = (
+        f"[{date_now}] {client_color}{name}{Fore.RESET}{separator_token}{to_send}\n"
+    )
     s.send(to_send.encode())
 
 s.close()
