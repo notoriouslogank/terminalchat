@@ -1,6 +1,5 @@
 import random
 import socket
-import sys
 from datetime import datetime
 from threading import Thread
 
